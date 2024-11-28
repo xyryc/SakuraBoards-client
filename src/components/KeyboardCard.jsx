@@ -1,6 +1,7 @@
 import { FaRegEye } from "react-icons/fa";
 import { HiOutlineTrash } from "react-icons/hi";
 import { MdOutlineEdit } from "react-icons/md";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
@@ -64,9 +65,9 @@ const KeyboardCard = ({ keyboard }) => {
             <button className="btn-xs btn btn-outline">
               <FaRegEye />
             </button>
-            <button className="btn-xs btn btn-outline">
+            <Link to={`/updateKeyboard/${_id}`} className="btn-xs btn btn-outline">
               <MdOutlineEdit />
-            </button>
+            </Link>
             <button
               onClick={() => handleDelete(_id)}
               className="btn-xs btn btn-outline"

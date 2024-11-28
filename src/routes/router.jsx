@@ -20,8 +20,9 @@ const router = createBrowserRouter([
         element: <AddKeyboard />,
       },
       {
-        path: "/updateKeyboard",
+        path: "/updateKeyboard/:id",
         element: <UpdateKeyboard />,
+        loader: ({params})=> fetch(`http://localhost:5000/keyboards/${params.id}`)
       },
     ],
   },
