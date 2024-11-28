@@ -1,11 +1,43 @@
 import { FaRegEye } from "react-icons/fa";
 import { HiOutlineTrash } from "react-icons/hi";
 import { MdOutlineEdit } from "react-icons/md";
+import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
 const KeyboardCard = ({ keyboard }) => {
   const { color, connection, layout, name, photo, price, switchType, _id } =
     keyboard;
+
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/keyboards/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Keyboard has been removed.",
+                icon: "success",
+              });
+            }
+          });
+
+        console.log("delete confirmed");
+      }
+    });
+  };
 
   return (
     <div>
@@ -33,10 +65,13 @@ const KeyboardCard = ({ keyboard }) => {
               <FaRegEye />
             </button>
             <button className="btn-xs btn btn-outline">
-              <MdOutlineEdit  />
+              <MdOutlineEdit />
             </button>
-            <button className="btn-xs btn btn-outline">
-              <HiOutlineTrash  />
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn-xs btn btn-outline"
+            >
+              <HiOutlineTrash />
             </button>
           </div>
         </div>
