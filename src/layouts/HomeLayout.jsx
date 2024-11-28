@@ -3,8 +3,8 @@ import Navbar from "../components/Navbar";
 
 const HomeLayout = () => {
   return (
-    <div className="container mx-auto px-4">
-      {/* <Navbar/> */}
+    <div className="container mx-auto px-4 font-kaushan-script">
+      <Navbar/>
       <Outlet />
     </div>
   );

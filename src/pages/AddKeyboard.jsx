@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddKeyboard = () => {
+  const navigate = useNavigate();
+
   const handleAddKeyboard = (event) => {
     event.preventDefault();
 
@@ -43,6 +46,8 @@ const AddKeyboard = () => {
             icon: "success",
             confirmButtonText: "Okay",
           });
+
+          navigate("/");
         }
       });
   };

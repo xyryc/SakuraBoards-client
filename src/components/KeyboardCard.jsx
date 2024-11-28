@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
-const KeyboardCard = ({ keyboard }) => {
+const KeyboardCard = ({ keyboard, keyboards, setKeyboards }) => {
   const { color, connection, layout, name, photo, price, switchType, _id } =
     keyboard;
 
@@ -32,6 +32,11 @@ const KeyboardCard = ({ keyboard }) => {
                 text: "Keyboard has been removed.",
                 icon: "success",
               });
+
+              const remaining = keyboards.filter(
+                (keyboard) => keyboard._id !== _id
+              );
+              setKeyboards(remaining);
             }
           });
 
@@ -62,10 +67,16 @@ const KeyboardCard = ({ keyboard }) => {
           <span>Price: ${price}</span>
 
           <div className="space-x-2">
-            <button className="btn-xs btn btn-outline">
+            <Link
+              to={`/keyboards/details/${_id}`}
+              className="btn-xs btn btn-outline"
+            >
               <FaRegEye />
-            </button>
-            <Link to={`/updateKeyboard/${_id}`} className="btn-xs btn btn-outline">
+            </Link>
+            <Link
+              to={`/updateKeyboard/${_id}`}
+              className="btn-xs btn btn-outline"
+            >
               <MdOutlineEdit />
             </Link>
             <button
