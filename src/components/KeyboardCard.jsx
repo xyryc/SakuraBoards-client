@@ -18,6 +18,10 @@ const KeyboardCard = ({ keyboard, keyboards, setKeyboards }) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
+      customClass: {
+        title: "font-kaushan-script",
+        confirmButtonText: "font-kaushan-script",
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/keyboards/${_id}`, {
@@ -47,7 +51,7 @@ const KeyboardCard = ({ keyboard, keyboards, setKeyboards }) => {
 
   return (
     <div>
-      <img className="h-52 w-full object-scale-down" src={photo} alt={name} />
+      <img className="h-52 w-full object-scale-down " src={photo} alt={name} />
 
       <div className="px-4">
         <div>

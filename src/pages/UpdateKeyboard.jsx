@@ -120,7 +120,7 @@ const UpdateKeyboard = () => {
         />
 
         <input
-          className="sm:col-span-2 border-b-gray-200 border py-2 hover:border-blue-500 duration-200 font-medium hover:bg-blue-100"
+          className="rounded-md bg-blue-100 sm:col-span-2 border-b-gray-200 border py-2 hover:border-blue-500 duration-200 font-medium hover:bg-blue-100"
           type="submit"
           value="Update Keyboard"
         />
