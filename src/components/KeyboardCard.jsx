@@ -67,8 +67,8 @@ const KeyboardCard = ({ keyboard, keyboards, setKeyboards }) => {
           <span>Switch Type: {switchType}</span>
         </div>
 
-        <div className="grid grid-cols-2 my-2 gap-8 font-medium text-sm">
-          <span>Price: ${price}</span>
+        <div className="grid grid-cols-2 my-2 gap-8 font-medium text-sm place-items-center justify-items-start">
+          <span>Price: <span className="text-green-500 text-lg">${price}</span></span>
 
           <div className="space-x-2">
             <Link

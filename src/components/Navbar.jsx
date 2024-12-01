@@ -1,6 +1,7 @@
-import { FaOpencart } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { GiNinjaHeroicStance } from "react-icons/gi";
+
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -9,7 +10,7 @@ const Navbar = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn">
-        <FaBarsStaggered />
+            <FaBarsStaggered />
           </div>
           <ul
             tabIndex={0}
@@ -30,10 +31,13 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        <Link className="btn">
+        {/* <Link className="btn">
           <FaOpencart className="w-5 h-5" />
+        </Link> */}
+        <Link to={`/users`} className="btn" title="Users">
+          <FaUsers className="w-5 h-5" />
         </Link>
-        <Link className="btn">
+        <Link to={`/register`} className="btn" title="Login">
           <GiNinjaHeroicStance className="w-5 h-5" />
         </Link>
       </div>

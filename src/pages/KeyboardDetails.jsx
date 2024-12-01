@@ -35,10 +35,10 @@ const KeyboardDetails = () => {
           </p>
 
           {/* Action Buttons */}
-          <div className="mt-6 flex gap-4">
+          {/* <div className="mt-6 flex gap-4">
             <button className="btn btn-outline btn-accent">Add to Cart</button>
             <button className="btn text-neutral">Add to Wishlist</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

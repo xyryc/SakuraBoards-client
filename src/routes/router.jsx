@@ -1,20 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomeLayout from "../layouts/HomeLayout";
 import UpdateKeyboard from "../pages/UpdateKeyboard";
 import AddKeyboard from "../pages/AddKeyboard";
 import AllKeyboards from "../pages/AllKeyboards";
 import KeyboardDetails from "../pages/KeyboardDetails";
+import MainLayout from "../layouts/MainLayout";
+import Home from "../pages/Home";
+import Register from "../pages/Register";
+import Users from "../pages/Users";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomeLayout />,
+    element: <MainLayout />,
     children: [
       {
         path: "/",
-        element: <AllKeyboards />,
-        loader: () => fetch("http://localhost:5000/keyboards"),
+        element: <Home />,
+        loader: () => fetch("/banner.json"),
+        children: [
+          {
+            path: "/",
+            element: <AllKeyboards />,
+            loader: () => fetch("http://localhost:5000/keyboards"),
+          },
+        ],
       },
+
       {
         path: "/addKeyboard",
         element: <AddKeyboard />,
@@ -31,6 +42,15 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/keyboards/${params.id}`),
       },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/users",
+        element: <Users/>,
+        loader: ()=> fetch("http://localhost:5000/users")
+      }
     ],
   },
 ]);
