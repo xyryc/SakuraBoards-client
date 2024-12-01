@@ -1,15 +1,56 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { logInUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+
+    logInUser(email, password)
+      .then((result) => {
+        console.log("firebase login success", result.user);
+
+        // update last login info
+        const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+        const loginInfo = { email, lastSignInTime };
+
+        // send patch req to backend users api
+        fetch("http://localhost:5000/users", {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(loginInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("signin info updated in db", data);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: "Error!",
+          text: `${error.code}`,
+          icon: "error",
+        });
+      });
+  };
 
   return (
     <div className="flex justify-center items-center">

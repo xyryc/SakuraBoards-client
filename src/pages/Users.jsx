@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const Users = () => {
   const loadedUsers = useLoaderData();
-  console.log(loadedUsers);
+  // console.log(loadedUsers);
   const [users, setUsers] = useState(loadedUsers);
 
   return (
@@ -38,10 +38,8 @@ const Users = () => {
                 </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.createdAt}</td>
-                <th>
-                  coming soon
-                </th>
+                <td>{user.createdAt || "Not defined"}</td>
+                <td>{user.lastSignInTime || "Not defined"}</td>
               </tr>
             ))}
           </tbody>

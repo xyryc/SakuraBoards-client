@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Users from "../pages/Users";
 import Login from "../pages/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,11 +30,19 @@ const router = createBrowserRouter([
 
       {
         path: "/addKeyboard",
-        element: <AddKeyboard />,
+        element: (
+          <PrivateRoute>
+            <AddKeyboard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/updateKeyboard/:id",
-        element: <UpdateKeyboard />,
+        element: (
+          <PrivateRoute>
+            <UpdateKeyboard />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/keyboards/${params.id}`),
       },
@@ -53,9 +62,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/users",
-        element: <Users/>,
-        loader: ()=> fetch("http://localhost:5000/users")
-      }
+        element: (
+          <PrivateRoute>
+            <Users />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/users"),
+      },
     ],
   },
 ]);
