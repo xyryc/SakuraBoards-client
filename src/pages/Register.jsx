@@ -71,7 +71,7 @@ const Register = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="card bg-base-100 w-full max-w-md shrink-0 rounded-md p-10 border">
-        <h2 className="font-semibold text-2xl text-center">Register account</h2>
+        <h2 className="font-semibold text-2xl text-center">Register an account</h2>
         <div className="border-b-[1px] mt-8"></div>
 
         <form onSubmit={handleSubmit} className="card-body ">
@@ -163,7 +163,7 @@ const Register = () => {
         <p className="2xl:font-semibold text-center">
           {`Have An Account? `}
           <Link className="text-red-500" to="/login">
-            Register
+            Login
           </Link>
         </p>
       </div>
