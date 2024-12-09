@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             <Users />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/users"),
+        // loader: () => fetch("http://localhost:5000/users"),
       },
     ],
   },

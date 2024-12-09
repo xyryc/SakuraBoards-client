@@ -1,10 +1,33 @@
-import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+// import { useState } from "react";
+// import { useLoaderData } from "react-router-dom";
+
+import { useQuery } from "@tanstack/react-query";
 
 const Users = () => {
-  const loadedUsers = useLoaderData();
+  // const loadedUsers = useLoaderData();
   // console.log(loadedUsers);
-  const [users, setUsers] = useState(loadedUsers);
+  // const [users, setUsers] = useState(loadedUsers);
+
+  const {
+    isError,
+    error,
+    // isPending,
+    data: users,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/users");
+      return res.json();
+    },
+  });
+
+  // if (isPending) {
+  //   return <p>Data is loading...</p>;
+  // }
+
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
 
   return (
     <div className="font-sawarabi-gothic">
@@ -23,7 +46,7 @@ const Users = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {users.map((user, index) => (
+            {users?.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>
