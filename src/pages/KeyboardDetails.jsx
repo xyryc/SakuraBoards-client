@@ -1,16 +1,33 @@
-import { useLoaderData } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
+import { Link, useLoaderData } from "react-router-dom";
 
 const KeyboardDetails = () => {
   const keyboard = useLoaderData();
 
   return (
-    <div className="container mx-auto p-6 my-20">
-      <div className="bg-white rounded-lg overflow-hidden">
+    <div className="container mx-auto p-6 mb-20">
+      <div className="breadcrumbs text-sm mb-6">
+        <ul>
+          <li>
+            <Link to={"/"}>
+              <FaHome className="mr-2" /> Home
+            </Link>
+          </li>
+          <li>
+            <Link to={"/allKeyboards"}>Keyboards</Link>
+          </li>
+          <li>
+            <Link>{keyboard.name}</Link>
+          </li>
+        </ul>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Keyboard Image */}
         <img
           src={keyboard.photo}
           alt={keyboard.name}
-          className="w-full h-64 object-scale-down"
+          className="w-full h-full object-scale-down"
         />
 
         {/* Keyboard Details */}
@@ -31,7 +48,7 @@ const KeyboardDetails = () => {
             {keyboard.connection}
           </p>
           <p className="text-gray-700 text-xl font-semibold mt-4">
-            Price: ${keyboard.price}
+            Price: <span className="text-green-500">${keyboard.price}</span>
           </p>
 
           {/* Action Buttons */}

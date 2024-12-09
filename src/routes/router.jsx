@@ -10,6 +10,7 @@ import Users from "../pages/Users";
 import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import MyKeyboards from "../pages/MyKeyboards";
+import FeaturedKeyboards from "../components/FeaturedKeyboards";
 
 const router = createBrowserRouter([
   {
@@ -23,10 +24,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/",
-            element: <AllKeyboards />,
-            loader: () => fetch("http://localhost:5000/keyboards"),
+            element: <FeaturedKeyboards />,
+            loader: () => fetch("http://localhost:5000/keyboards/featured"),
           },
         ],
+      },
+      {
+        path: "/keyboards",
+        element: <AllKeyboards />,
+        loader: () => fetch("http://localhost:5000/keyboards"),
       },
       {
         path: "/addKeyboard",

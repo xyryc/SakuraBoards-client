@@ -52,19 +52,23 @@ const Login = () => {
           title: "Error!",
           text: `${error.code}`,
           icon: "error",
+          customClass: {
+            title: "font-kaushan-script",
+            confirmButtonText: "font-kaushan-script",
+          },
         });
       });
   };
 
   return (
     <div className="flex justify-center items-center">
-      <div className="card bg-base-100 w-full max-w-md shrink-0 rounded-md p-10 border">
+      <div className="card bg-base-100 w-full max-w-md shrink-0 rounded-md px-10 py-5 border">
         <h2 className="font-semibold text-2xl text-center">
           Login to your account
         </h2>
-        <div className="border-b-[1px] mt-8"></div>
+        <div className="border-b-[1px] my-4"></div>
 
-        <form onSubmit={handleSubmit} className="card-body ">
+        <form onSubmit={handleSubmit} className="space-y-2">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email Address</span>
@@ -110,7 +114,7 @@ const Login = () => {
               </button>
             </label> */}
           </div>
-          <div className="form-control mt-6">
+          <div className="form-control py-3">
             <button className="btn btn-neutral rounded-md">Login</button>
           </div>
         </form>

@@ -25,6 +25,9 @@ const Navbar = () => {
               <NavLink to={`/`}>Homepage</NavLink>
             </li>
             <li>
+              <NavLink to={`/keyboards`}>Keyboards</NavLink>
+            </li>
+            <li>
               <NavLink to={`/addKeyboard`}>Add Keyboard</NavLink>
             </li>
             <li>
@@ -53,7 +56,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div>
-            <Link to={`/register`} className="btn" title="Register">
+            <Link to={`/login`} className="btn" title="Login">
               <GiNinjaHeroicStance className="w-5 h-5" />
             </Link>
           </div>

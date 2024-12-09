@@ -50,6 +50,10 @@ const AddKeyboard = () => {
             text: "Keyboard added successfully",
             icon: "success",
             confirmButtonText: "Okay",
+            customClass: {
+              title: "font-kaushan-script",
+              confirmButtonText: "font-kaushan-script",
+            },
           });
 
           navigate("/");

@@ -59,6 +59,10 @@ const UpdateKeyboard = () => {
             text: "Keyboard info updated successfully",
             icon: "success",
             confirmButtonText: "Okay",
+            customClass: {
+              title: "font-kaushan-script",
+              confirmButtonText: "font-kaushan-script",
+            },
           });
 
           navigate("/myKeyboards");

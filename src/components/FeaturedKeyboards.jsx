@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import KeyboardCard from "../components/KeyboardCard";
 import { useState } from "react";
 
-const AllKeyboards = () => {
+const FeaturedKeyboards = () => {
   const allKeyboards = useLoaderData();
   const [keyboards, setKeyboards] = useState(allKeyboards);
 
@@ -34,4 +34,4 @@ const AllKeyboards = () => {
   );
 };
 
-export default AllKeyboards;
+export default FeaturedKeyboards;
