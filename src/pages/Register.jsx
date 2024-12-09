@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
   const { createNewUser, updateUserProfile, setUser } = useContext(AuthContext);
@@ -39,29 +40,44 @@ const Register = () => {
 
         const newUser = { photo, name, email, createdAt };
 
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("user created at db", data);
+        // axios
+        axios.post("http://localhost:5000/users", newUser).then((data) => {
+          if (data.data.insertedId) {
+            Swal.fire({
+              title: "Success",
+              text: "User created in database successfully!",
+              icon: "success",
+              customClass: {
+                title: "font-kaushan-script",
+                confirmButtonText: "font-kaushan-script",
+              },
+            });
+          }
+        });
 
-            if (data.insertedId) {
-              Swal.fire({
-                title: "Success",
-                text: "User created in database successfully!",
-                icon: "success",
-                customClass: {
-                  title: "font-kaushan-script",
-                  confirmButtonText: "font-kaushan-script",
-                },
-              });
-            }
-          });
+        // fetch("http://localhost:5000/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(newUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log("user created at db", data);
+
+        //     if (data.insertedId) {
+        //       Swal.fire({
+        //         title: "Success",
+        //         text: "User created in database successfully!",
+        //         icon: "success",
+        //         customClass: {
+        //           title: "font-kaushan-script",
+        //           confirmButtonText: "font-kaushan-script",
+        //         },
+        //       });
+        //     }
+        //   });
       })
       .catch((error) => {
         console.log(error);

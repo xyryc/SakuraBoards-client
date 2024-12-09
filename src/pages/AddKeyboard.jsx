@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
+import axios from "axios";
 
 const AddKeyboard = () => {
   const navigate = useNavigate();
@@ -30,35 +31,54 @@ const AddKeyboard = () => {
       username: user.displayName,
       email: user.email,
     };
-    console.log(newKeyboard);
+    // console.log(newKeyboard);
+
+    // axios
+    axios.post("http://localhost:5000/keyboards", newKeyboard).then((data) => {
+      console.log(data.data);
+      if (data.data.insertedId) {
+        Swal.fire({
+          title: "Success!",
+          text: "Keyboard added successfully",
+          icon: "success",
+          confirmButtonText: "Okay",
+          customClass: {
+            title: "font-kaushan-script",
+            confirmButtonText: "font-kaushan-script",
+          },
+        });
+
+        navigate("/");
+      }
+    });
 
     // send data to server
-    fetch("http://localhost:5000/keyboards", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newKeyboard),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+    //   fetch("http://localhost:5000/keyboards", {
+    //     method: "POST",
+    //     headers: {
+    //       "content-type": "application/json",
+    //     },
+    //     body: JSON.stringify(newKeyboard),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
 
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Success!",
-            text: "Keyboard added successfully",
-            icon: "success",
-            confirmButtonText: "Okay",
-            customClass: {
-              title: "font-kaushan-script",
-              confirmButtonText: "font-kaushan-script",
-            },
-          });
+    //       if (data.insertedId) {
+    //         Swal.fire({
+    //           title: "Success!",
+    //           text: "Keyboard added successfully",
+    //           icon: "success",
+    //           confirmButtonText: "Okay",
+    //           customClass: {
+    //             title: "font-kaushan-script",
+    //             confirmButtonText: "font-kaushan-script",
+    //           },
+    //         });
 
-          navigate("/");
-        }
-      });
+    //         navigate("/");
+    //       }
+    //     });
   };
 
   return (

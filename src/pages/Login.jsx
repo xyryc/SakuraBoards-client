@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
   const { logInUser, setUser } = useContext(AuthContext);
@@ -33,18 +34,22 @@ const Login = () => {
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
 
+        axios.patch("http://localhost:5000/users", loginInfo).then((data) => {
+          console.log("signin info updated in db", data.data);
+        });
+
         // send patch req to backend users api
-        fetch("http://localhost:5000/users", {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(loginInfo),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("signin info updated in db", data);
-          });
+        // fetch("http://localhost:5000/users", {
+        //   method: "PATCH",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(loginInfo),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log("signin info updated in db", data);
+        //   });
       })
       .catch((error) => {
         console.log(error);
