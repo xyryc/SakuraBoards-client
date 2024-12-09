@@ -7,7 +7,7 @@ const MainLayout = () => {
     <>
       <div className="font-kaushan-script">
         <Navbar />
-        <div className="container mx-auto px-4 min-h-[calc(100vh-232px)] py-12">
+        <div className="container mx-auto px-4 min-h-screen">
           <Outlet />
         </div>
         <Footer />

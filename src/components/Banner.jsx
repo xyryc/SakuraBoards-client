@@ -31,7 +31,7 @@ const Banner = () => {
             <div className="relative">
               <img
                 src={item.image}
-                className="h-[77vh] w-full object-cover rounded-xl"
+                className="h-[85vh] w-full object-cover rounded-xl"
               />
               <h1 className="absolute bottom-4 right-10 z-10 text-3xl text-neutral-content">
                 {item.name}

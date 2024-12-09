@@ -1,12 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { logInUser } = useContext(AuthContext);
+  const { logInUser, setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -24,6 +26,10 @@ const Login = () => {
     logInUser(email, password)
       .then((result) => {
         console.log("firebase login success", result.user);
+
+        setUser(result.user);
+
+        navigate(location?.state ? location.state : "/");
 
         // update last login info
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;

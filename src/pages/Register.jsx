@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { createNewUser, updateUserProfile } = useContext(AuthContext);
+  const { createNewUser, updateUserProfile, setUser } = useContext(AuthContext);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -25,6 +25,7 @@ const Register = () => {
     createNewUser(email, password)
       .then((result) => {
         console.log("user created at firebase", result.user);
+        setUser(result.user);
 
         updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
@@ -71,7 +72,9 @@ const Register = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="card bg-base-100 w-full max-w-md shrink-0 rounded-md p-10 border">
-        <h2 className="font-semibold text-2xl text-center">Register an account</h2>
+        <h2 className="font-semibold text-2xl text-center">
+          Register an account
+        </h2>
         <div className="border-b-[1px] mt-8"></div>
 
         <form onSubmit={handleSubmit} className="card-body ">

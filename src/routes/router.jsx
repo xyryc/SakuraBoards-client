@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import Users from "../pages/Users";
 import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
+import MyKeyboards from "../pages/MyKeyboards";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,6 @@ const router = createBrowserRouter([
           },
         ],
       },
-
       {
         path: "/addKeyboard",
         element: (
@@ -46,11 +46,21 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/keyboards/${params.id}`),
       },
+
       {
         path: "/keyboards/details/:id",
         element: <KeyboardDetails />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/keyboards/${params.id}`),
+      },
+
+      {
+        path: "/myKeyboards",
+        element: (
+          <PrivateRoute>
+            <MyKeyboards />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/register",
