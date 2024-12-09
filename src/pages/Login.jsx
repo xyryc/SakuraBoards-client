@@ -21,11 +21,9 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(email, password);
-
     logInUser(email, password)
       .then((result) => {
-        console.log("firebase login success", result.user);
+        // console.log("firebase login success", result.user);
 
         setUser(result.user);
 

@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AddKeyboard = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const handleAddKeyboard = (event) => {
     event.preventDefault();
@@ -24,6 +27,8 @@ const AddKeyboard = () => {
       connection,
       price,
       photo,
+      username: user.displayName,
+      email: user.email,
     };
     console.log(newKeyboard);
 

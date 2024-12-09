@@ -16,7 +16,7 @@ const AllKeyboards = () => {
         voluptatum laborum pariatur inventore cumque
       </p>
 
-      <p className="text-center mt-6"> 
+      <p className="text-center mt-6">
         <Link
           to={`/addKeyboard`}
           className="bg-blue-100 sm:col-span-2 border-b-gray-200 border py-2 hover:border-blue-500 duration-200 font-medium hover:bg-blue-100 px-6 rounded-md"
@@ -27,12 +27,7 @@ const AllKeyboards = () => {
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {keyboards.map((keyboard) => (
-          <KeyboardCard
-            key={keyboard._id}
-            keyboard={keyboard}
-            keyboards={keyboards}
-            setKeyboards={setKeyboards}
-          />
+          <KeyboardCard key={keyboard._id} keyboard={keyboard} />
         ))}
       </div>
     </div>

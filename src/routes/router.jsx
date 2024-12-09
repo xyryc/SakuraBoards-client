@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         path: "/myKeyboards",
         element: (
           <PrivateRoute>
-            <MyKeyboards />,
+            <MyKeyboards />
           </PrivateRoute>
         ),
       },

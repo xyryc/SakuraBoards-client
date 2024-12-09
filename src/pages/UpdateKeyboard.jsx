@@ -4,8 +4,18 @@ import Swal from "sweetalert2";
 const UpdateKeyboard = () => {
   const navigate = useNavigate();
   const keyboard = useLoaderData();
-  const { color, connection, layout, name, photo, price, switchType, _id } =
-    keyboard;
+  const {
+    color,
+    connection,
+    layout,
+    name,
+    photo,
+    price,
+    switchType,
+    _id,
+    username,
+    email,
+  } = keyboard;
 
   const handleUpdateKeyboard = (event) => {
     event.preventDefault();
@@ -27,8 +37,9 @@ const UpdateKeyboard = () => {
       connection,
       price,
       photo,
+      username,
+      email,
     };
-    // console.log(updatedKeyboard);
 
     // send data to server
     fetch(`http://localhost:5000/keyboards/${_id}`, {
@@ -50,7 +61,7 @@ const UpdateKeyboard = () => {
             confirmButtonText: "Okay",
           });
 
-          navigate("/");
+          navigate("/myKeyboards");
         }
       });
   };
