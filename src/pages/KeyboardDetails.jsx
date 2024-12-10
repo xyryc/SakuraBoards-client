@@ -14,7 +14,7 @@ const KeyboardDetails = () => {
             </Link>
           </li>
           <li>
-            <Link to={"/allKeyboards"}>Keyboards</Link>
+            <Link to={"/keyboards"}>Keyboards</Link>
           </li>
           <li>
             <Link>{keyboard.name}</Link>
@@ -36,12 +36,17 @@ const KeyboardDetails = () => {
           <p className="text-gray-500 mt-2">
             <span className="font-medium">Color:</span> {keyboard.color}
           </p>
+
+          <p className="text-gray-500 mt-2">
+            <span className="font-medium">Keycaps Set:</span> {keyboard.keycaps}
+          </p>
+
           <p className="text-gray-500 mt-2">
             <span className="font-medium">Switch Type:</span>{" "}
             {keyboard.switchType}
           </p>
           <p className="text-gray-500 mt-2">
-            <span className="font-medium">Layout:</span> {keyboard.layout}
+            <span className="font-medium">Layout:</span> {keyboard.layout}%
           </p>
           <p className="text-gray-500 mt-2">
             <span className="font-medium">Connection:</span>{" "}

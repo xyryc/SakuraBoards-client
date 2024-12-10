@@ -12,6 +12,7 @@ const UpdateKeyboard = () => {
     photo,
     price,
     switchType,
+    keycaps,
     _id,
     username,
     email,
@@ -24,6 +25,7 @@ const UpdateKeyboard = () => {
     const name = form.name.value;
     const color = form.color.value;
     const switchType = form.switchType.value;
+    const keycaps = form.keycaps.value;
     const layout = form.layout.value;
     const connection = form.connection.value;
     const price = form.price.value;
@@ -33,6 +35,7 @@ const UpdateKeyboard = () => {
       name,
       color,
       switchType,
+      keycaps,
       layout,
       connection,
       price,
@@ -51,7 +54,7 @@ const UpdateKeyboard = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
 
         if (data.modifiedCount > 0) {
           Swal.fire({
@@ -103,6 +106,14 @@ const UpdateKeyboard = () => {
         />
 
         <input
+          defaultValue={keycaps}
+          type="text"
+          name="keycaps"
+          placeholder="Keycaps Set"
+          className="border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
+        />
+
+        <input
           defaultValue={layout}
           type="text"
           name="layout"
@@ -131,7 +142,7 @@ const UpdateKeyboard = () => {
           type="text"
           name="photo"
           placeholder="Photo URL"
-          className="sm:col-span-2 border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
+          className="border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
         />
 
         <input

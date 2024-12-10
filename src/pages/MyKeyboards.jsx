@@ -60,10 +60,10 @@ const MyKeyboards = () => {
   return (
     <>
       <div>
-        <h2 className="text-3xl font-bold text-center mb-2">My Keyboards</h2>
+        <h2 className="text-3xl font-bold text-center pb-6">My Keyboards</h2>
       </div>
 
-      <div className="space-y-3 mt-3">
+      <div className="space-y-3">
         {keyboards.map((keyboard) => (
           <div
             key={keyboard._id}
@@ -90,6 +90,7 @@ const MyKeyboards = () => {
               <div>
                 <p>Switch Type: {keyboard.switchType}</p>
                 <p>Connection: {keyboard.connection}</p>
+                <p>Keycaps Set: {keyboard.keycaps}</p>
               </div>
 
               <div>

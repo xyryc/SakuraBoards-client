@@ -14,7 +14,7 @@ const KeyboardCard = ({ keyboard }) => {
           <h1 className="text-lg font-semibold">{name}</h1>
           <div className="grid grid-cols-2 my-2 gap-8 font-medium text-sm">
             <span>Color: {color}</span>
-            <span>Layout: {layout}</span>
+            <span>Layout: {layout}%</span>
           </div>
         </div>
 

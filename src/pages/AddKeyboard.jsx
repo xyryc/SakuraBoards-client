@@ -15,6 +15,7 @@ const AddKeyboard = () => {
     const name = form.name.value;
     const color = form.color.value;
     const switchType = form.switchType.value;
+    const keycaps = form.keycaps.value;
     const layout = form.layout.value;
     const connection = form.connection.value;
     const price = form.price.value;
@@ -24,6 +25,7 @@ const AddKeyboard = () => {
       name,
       color,
       switchType,
+      keycaps,
       layout,
       connection,
       price,
@@ -35,7 +37,7 @@ const AddKeyboard = () => {
 
     // axios
     axios.post("http://localhost:5000/keyboards", newKeyboard).then((data) => {
-      console.log(data.data);
+      // console.log(data.data);
       if (data.data.insertedId) {
         Swal.fire({
           title: "Success!",
@@ -112,6 +114,13 @@ const AddKeyboard = () => {
 
         <input
           type="text"
+          name="keycaps"
+          placeholder="Keycaps Set"
+          className="border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
+        />
+
+        <input
+          type="number"
           name="layout"
           placeholder="Layout"
           className="border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
@@ -120,7 +129,7 @@ const AddKeyboard = () => {
         <input
           type="text"
           name="connection"
-          placeholder="Connection"
+          placeholder="Connection Type"
           className="border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
         />
 
@@ -135,7 +144,7 @@ const AddKeyboard = () => {
           type="text"
           name="photo"
           placeholder="Photo URL"
-          className="sm:col-span-2 border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
+          className=" border-[#e5eaf2] border-b outline-none px-4 py-3 focus:border-[#3B9DF8] transition-colors duration-300"
         />
 
         <input
