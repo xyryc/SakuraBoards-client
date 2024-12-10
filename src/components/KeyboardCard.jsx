@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const KeyboardCard = ({ keyboard }) => {
+const KeyboardCard = ({ keyboard, highlightText, search }) => {
   const { color, connection, layout, name, photo, price, switchType, _id } =
     keyboard;
 
@@ -11,7 +11,9 @@ const KeyboardCard = ({ keyboard }) => {
 
       <div className="px-4">
         <div>
-          <h1 className="text-lg font-semibold">{name}</h1>
+          <h1 className="text-lg font-semibold">
+            {highlightText(name, search)}
+          </h1>
           <div className="grid grid-cols-2 my-2 gap-8 font-medium text-sm">
             <span>Color: {color}</span>
             <span>Layout: {layout}%</span>
