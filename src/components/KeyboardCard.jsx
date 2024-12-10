@@ -1,9 +1,27 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const KeyboardCard = ({ keyboard, highlightText, search }) => {
+const KeyboardCard = ({ keyboard, search }) => {
   const { color, connection, layout, name, photo, price, switchType, _id } =
     keyboard;
+
+  // Function to highlight matched text
+  const highlightText = (text, searchTerm) => {
+    if (!searchTerm) return text;
+
+    const regex = new RegExp(`(${searchTerm})`, "gi");
+    const parts = text.split(regex);
+
+    return parts.map((part, index) =>
+      regex.test(part) ? (
+        <span key={index} style={{ backgroundColor: "yellow" }}>
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
 
   return (
     <Link to={`/keyboards/details/${_id}`}>

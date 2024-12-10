@@ -8,7 +8,7 @@ const MyKeyboards = () => {
   const [keyboards, setKeyboards] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myKeyboards/${user.email}`)
+    fetch(`https://mk-shop-server.vercel.app/myKeyboards/${user.email}`)
       .then((res) => res.json())
       .then((data) => setKeyboards(data));
   }, [user.email]);
@@ -28,7 +28,7 @@ const MyKeyboards = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/keyboards/${_id}`, {
+        fetch(`https://mk-shop-server.vercel.app/keyboards/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

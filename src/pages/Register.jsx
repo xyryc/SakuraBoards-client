@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 const Register = () => {
-  const { createNewUser, updateUserProfile, setUser } = useContext(AuthContext);
+  const { createNewUser, updateUserProfile, setUser, setLoading } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -31,6 +33,7 @@ const Register = () => {
         updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
             console.log("profile updated at firebase");
+            navigate("/users");
           })
           .catch((error) => {
             console.log(error);
@@ -41,21 +44,23 @@ const Register = () => {
         const newUser = { photo, name, email, createdAt };
 
         // axios
-        axios.post("http://localhost:5000/users", newUser).then((data) => {
-          if (data.data.insertedId) {
-            Swal.fire({
-              title: "Success",
-              text: "User created in database successfully!",
-              icon: "success",
-              customClass: {
-                title: "font-kaushan-script",
-                confirmButtonText: "font-kaushan-script",
-              },
-            });
-          }
-        });
+        axios
+          .post("https://mk-shop-server.vercel.app/users", newUser)
+          .then((data) => {
+            if (data.data.insertedId) {
+              Swal.fire({
+                title: "Success",
+                text: "User created in database successfully!",
+                icon: "success",
+                customClass: {
+                  title: "font-kaushan-script",
+                  confirmButtonText: "font-kaushan-script",
+                },
+              });
+            }
+          });
 
-        // fetch("http://localhost:5000/users", {
+        // fetch("https://mk-shop-server.vercel.app/users", {
         //   method: "POST",
         //   headers: {
         //     "content-type": "application/json",
@@ -80,7 +85,8 @@ const Register = () => {
         //   });
       })
       .catch((error) => {
-        console.log(error);
+        setLoading(false);
+        // console.log(error);
         Swal.fire({
           title: "Error!",
           text: `${error.code}`,

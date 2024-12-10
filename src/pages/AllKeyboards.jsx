@@ -9,28 +9,10 @@ const AllKeyboards = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/keyboards?search=${search}`)
+    fetch(`https://mk-shop-server.vercel.app/keyboards?search=${search}`)
       .then((res) => res.json())
       .then((data) => setKeyboards(data));
   }, [search]);
-
-  // Function to highlight matched text
-  const highlightText = (text, searchTerm) => {
-    if (!searchTerm) return text;
-
-    const regex = new RegExp(`(${searchTerm})`, "gi");
-    const parts = text.split(regex);
-
-    return parts.map((part, index) =>
-      regex.test(part) ? (
-        <span key={index} style={{ backgroundColor: "yellow" }}>
-          {part}
-        </span>
-      ) : (
-        part
-      )
-    );
-  };
 
   return (
     <div>
@@ -66,7 +48,6 @@ const AllKeyboards = () => {
           <KeyboardCard
             key={keyboard._id}
             keyboard={keyboard}
-            highlightText={highlightText}
             search={search}
           />
         ))}
