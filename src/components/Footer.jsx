@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-white boxShadow rounded-xl w-full p-3 lg:p-4 relative">
       <div className="w-full flex items-center justify-center pt-[30px] flex-col gap-[20px] pb-[130px]">
-            <h1 className="text-2xl font-bold">SakuraBoards</h1>
+        <h1 className="text-2xl font-bold">SakuraBoards</h1>
 
         <p className="text-[0.9rem] text-center sm:text-start text-gray-600">
           High level experience in web design and development knowledge,
@@ -36,7 +36,7 @@ const Footer = () => {
 
       <div className="z-30 absolute bottom-3 left-0 right-0 px-3 flex items-center justify-between w-full">
         <p className="text-[0.9rem] text-gray-300">
-        Copyright © {new Date().getFullYear()} - All right reserved
+          Copyright © {new Date().getFullYear()} - All right reserved
         </p>
 
         <SlArrowUp className="p-2 rounded-full border border-gray-300 cursor-pointer text-[2rem] text-gray-300" />

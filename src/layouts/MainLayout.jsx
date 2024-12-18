@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Loading from "../components/Loading";
+import ScrollToTop from "../components/ScrollToTop";
 
 const MainLayout = () => {
   const { loading } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const MainLayout = () => {
       <div className="font-kaushan-script">
         <Navbar />
 
+        <ScrollToTop />
         {loading ? (
           <Loading />
         ) : (
