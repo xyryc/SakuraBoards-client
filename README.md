@@ -2,7 +2,7 @@
 
 **Live URL**: [sakuraboards.web.app](https://sakuraboards.web.app/)
 
-HyperLoadout is a feature-rich web application designed for managing and showcasing eSports equipment. It includes user authentication, a fully functional CRUD system, and sorting capabilities, all powered by modern web technologies.
+SakuraBoards is a web application designed for managing and showcasing minimalistic and popular aesthetic keyboards. It includes user authentication, a functional CRUD system, and search capabilities.
 
 ## Key Features
 
