@@ -34,14 +34,12 @@ const Login = () => {
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
 
-        axios
-          .patch("https://mk-shop-server.vercel.app/users", loginInfo)
-          .then((data) => {
-            console.log("signin info updated in db", data.data);
-          });
+        axios.patch("http://localhost:5000/users", loginInfo).then((data) => {
+          console.log("signin info updated in db", data.data);
+        });
 
         // send patch req to backend users api
-        // fetch("https://mk-shop-server.vercel.app/users", {
+        // fetch("http://localhost:5000/users", {
         //   method: "PATCH",
         //   headers: {
         //     "content-type": "application/json",

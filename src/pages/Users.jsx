@@ -16,7 +16,7 @@ const Users = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("https://mk-shop-server.vercel.app/users");
+      const res = await fetch("http://localhost:5000/users");
       return res.json();
     },
   });
@@ -61,8 +61,8 @@ const Users = () => {
                 </td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.createdAt || "Not defined"}</td>
-                <td>{user.lastSignInTime || "Not defined"}</td>
+                <td>{user.createdAt || "No data"}</td>
+                <td>{user.lastSignInTime || "No data"}</td>
               </tr>
             ))}
           </tbody>

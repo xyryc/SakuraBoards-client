@@ -1,18 +1,50 @@
-import { useLoaderData } from "react-router-dom";
 import KeyboardCard from "../components/KeyboardCard";
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { useLoaderData } from "react-router-dom";
 
 const AllKeyboards = () => {
-  const allKeyboards = useLoaderData();
-  const [keyboards, setKeyboards] = useState(allKeyboards);
+  const [keyboards, setKeyboards] = useState([]);
   const [search, setSearch] = useState("");
 
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(0);
+  const { count } = useLoaderData();
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
+  console.log(pages);
+
+  /**
+   * DONE 1: get total number of pages
+   * DONE 2: number of items per page dynamic eg. 10, 20, 50
+   * DONE 3: get the current page
+   */
+
   useEffect(() => {
-    fetch(`https://mk-shop-server.vercel.app/keyboards?search=${search}`)
+    fetch(
+      `http://localhost:5000/keyboards?search=${search}&page=${currentPage}&size=${itemsPerPage}`
+    )
       .then((res) => res.json())
       .then((data) => setKeyboards(data));
-  }, [search]);
+  }, [search, currentPage, itemsPerPage]);
+
+  const handleItemsPerPage = (e) => {
+    const value = parseInt(e.target.value);
+    setItemsPerPage(value);
+    setCurrentPage(0);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div>
@@ -34,15 +66,6 @@ const AllKeyboards = () => {
         <CiSearch />
       </label>
 
-      {/* <p className="text-center mt-6">
-        <Link
-          to={`/addKeyboard`}
-          className="bg-blue-100 sm:col-span-2 border-b-gray-200 border py-2 hover:border-blue-500 duration-200 font-medium hover:bg-blue-100 px-6 rounded-md"
-        >
-          Add Keyboard
-        </Link>
-      </p> */}
-
       <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {keyboards.map((keyboard) => (
           <KeyboardCard
@@ -51,6 +74,39 @@ const AllKeyboards = () => {
             search={search}
           />
         ))}
+      </div>
+
+      <div className="text-center space-x-3 py-10 font-mono">
+        <p>{currentPage}</p>
+        <button onClick={handlePrevPage} className="btn btn-outline btn-sm">
+          Prev
+        </button>
+        {pages.map((page) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            key={page}
+            className={`btn btn-outline btn-sm ${
+              currentPage === page && " btn-active"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNextPage} className="btn btn-outline btn-sm">
+          Next
+        </button>
+
+        <select
+          onChange={handleItemsPerPage}
+          name=""
+          id=""
+          className="btn btn-outline btn-sm"
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
       </div>
     </div>
   );

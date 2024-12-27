@@ -25,15 +25,14 @@ const router = createBrowserRouter([
           {
             path: "/",
             element: <FeaturedKeyboards />,
-            loader: () =>
-              fetch("https://mk-shop-server.vercel.app/keyboards/featured"),
+            loader: () => fetch("http://localhost:5000/keyboards/featured"),
           },
         ],
       },
       {
         path: "/keyboards",
         element: <AllKeyboards />,
-        loader: () => fetch("https://mk-shop-server.vercel.app/keyboards"),
+        loader: () => fetch("http://localhost:5000/keyboardsCount"),
       },
       {
         path: "/addKeyboard",
@@ -51,14 +50,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://mk-shop-server.vercel.app/keyboards/${params.id}`),
+          fetch(`http://localhost:5000/keyboards/${params.id}`),
       },
 
       {
         path: "/keyboards/details/:id",
         element: <KeyboardDetails />,
         loader: ({ params }) =>
-          fetch(`https://mk-shop-server.vercel.app/keyboards/${params.id}`),
+          fetch(`http://localhost:5000/keyboards/${params.id}`),
       },
 
       {
@@ -84,7 +83,7 @@ const router = createBrowserRouter([
             <Users />
           </PrivateRoute>
         ),
-        // loader: () => fetch("https://mk-shop-server.vercel.app/users"),
+        // loader: () => fetch("http://localhost:5000/users"),
       },
     ],
   },

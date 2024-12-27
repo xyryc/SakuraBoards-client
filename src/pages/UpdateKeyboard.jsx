@@ -45,7 +45,7 @@ const UpdateKeyboard = () => {
     };
 
     // send data to server
-    fetch(`https://mk-shop-server.vercel.app/keyboards/${_id}`, {
+    fetch(`http://localhost:5000/keyboards/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

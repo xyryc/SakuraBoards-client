@@ -36,28 +36,26 @@ const AddKeyboard = () => {
     // console.log(newKeyboard);
 
     // axios
-    axios
-      .post("https://mk-shop-server.vercel.app/keyboards", newKeyboard)
-      .then((data) => {
-        // console.log(data.data);
-        if (data.data.insertedId) {
-          Swal.fire({
-            title: "Success!",
-            text: "Keyboard added successfully",
-            icon: "success",
-            confirmButtonText: "Okay",
-            customClass: {
-              title: "font-kaushan-script",
-              confirmButtonText: "font-kaushan-script",
-            },
-          });
+    axios.post("http://localhost:5000/keyboards", newKeyboard).then((data) => {
+      // console.log(data.data);
+      if (data.data.insertedId) {
+        Swal.fire({
+          title: "Success!",
+          text: "Keyboard added successfully",
+          icon: "success",
+          confirmButtonText: "Okay",
+          customClass: {
+            title: "font-kaushan-script",
+            confirmButtonText: "font-kaushan-script",
+          },
+        });
 
-          navigate("/");
-        }
-      });
+        navigate("/");
+      }
+    });
 
     // send data to server
-    //   fetch("https://mk-shop-server.vercel.app/keyboards", {
+    //   fetch("http://localhost:5000/keyboards", {
     //     method: "POST",
     //     headers: {
     //       "content-type": "application/json",

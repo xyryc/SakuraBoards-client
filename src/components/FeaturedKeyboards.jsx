@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import KeyboardCard from "../components/KeyboardCard";
 import { useState } from "react";
 
@@ -29,6 +29,15 @@ const FeaturedKeyboards = () => {
         {keyboards.map((keyboard) => (
           <KeyboardCard key={keyboard._id} keyboard={keyboard} />
         ))}
+      </div>
+
+      <div className="grid place-items-center">
+        <Link
+          to="/keyboards"
+          className="btn btn-neutral btn-wide rounded-full mt-6 bg-blue-400 border-none"
+        >
+          See All
+        </Link>
       </div>
     </div>
   );
