@@ -16,7 +16,7 @@ const Users = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("https://mk-shop-server.vercel.app/users");
       return res.json();
     },
   });

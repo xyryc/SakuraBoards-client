@@ -44,21 +44,23 @@ const Register = () => {
         const newUser = { photo, name, email, createdAt };
 
         // axios
-        axios.post("http://localhost:5000/users", newUser).then((data) => {
-          if (data.data.insertedId) {
-            Swal.fire({
-              title: "Success",
-              text: "User created in database successfully!",
-              icon: "success",
-              customClass: {
-                title: "font-kaushan-script",
-                confirmButtonText: "font-kaushan-script",
-              },
-            });
-          }
-        });
+        axios
+          .post("https://mk-shop-server.vercel.app/users", newUser)
+          .then((data) => {
+            if (data.data.insertedId) {
+              Swal.fire({
+                title: "Success",
+                text: "User created in database successfully!",
+                icon: "success",
+                customClass: {
+                  title: "font-kaushan-script",
+                  confirmButtonText: "font-kaushan-script",
+                },
+              });
+            }
+          });
 
-        // fetch("http://localhost:5000/users", {
+        // fetch("https://mk-shop-server.vercel.app/users", {
         //   method: "POST",
         //   headers: {
         //     "content-type": "application/json",

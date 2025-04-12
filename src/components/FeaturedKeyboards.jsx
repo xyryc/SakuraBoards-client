@@ -1,10 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 import KeyboardCard from "../components/KeyboardCard";
-import { useState } from "react";
 
 const FeaturedKeyboards = () => {
-  const allKeyboards = useLoaderData();
-  const [keyboards, setKeyboards] = useState(allKeyboards);
+  const keyboards = useLoaderData();
 
   return (
     <div>
@@ -16,16 +14,16 @@ const FeaturedKeyboards = () => {
         voluptatum laborum pariatur inventore cumque
       </p>
 
-      {/* <p className="text-center mt-6">
+      <p className="text-center mt-6">
         <Link
           to={`/addKeyboard`}
           className="bg-blue-100 sm:col-span-2 border-b-gray-200 border py-2 hover:border-blue-500 duration-200 font-medium hover:bg-blue-100 px-6 rounded-md"
         >
           Add Keyboard
         </Link>
-      </p> */}
+      </p>
 
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-items-center justify-items-center gap-6">
         {keyboards.map((keyboard) => (
           <KeyboardCard key={keyboard._id} keyboard={keyboard} />
         ))}
@@ -34,7 +32,7 @@ const FeaturedKeyboards = () => {
       <div className="grid place-items-center">
         <Link
           to="/keyboards"
-          className="btn btn-neutral btn-wide rounded-full mt-6 bg-blue-400 border-none"
+          className="btn btn-neutral btn-wide rounded-full mt-6 bg-blue-400 text-white border-none"
         >
           See All
         </Link>

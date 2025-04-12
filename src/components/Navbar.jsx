@@ -1,14 +1,12 @@
 import { useContext } from "react";
-import { FaUsers } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { GiNinjaHeroicStance } from "react-icons/gi";
-import { IoExitOutline } from "react-icons/io5";
-
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
 
   return (
     <div className="navbar bg-base-100">
@@ -42,17 +40,50 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        {/* <Link className="btn">
-          <FaOpencart className="w-5 h-5" />
-        </Link> */}
-        <Link to={`/users`} className="btn" title="Users">
-          <FaUsers className="w-5 h-5" />
-        </Link>
         {user ? (
           <div>
-            <button onClick={() => logOut()} className="btn" title="Logout">
-              <IoExitOutline className="w-5 h-5" />
-            </button>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user?.photoURL}
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <Link to="/users" className="justify-between">
+                    Users
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">coming soon</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    Settings
+                    <span className="badge">coming soon</span>
+                  </a>
+                </li>
+                <li>
+                  <a onClick={logOut}>Logout</a>
+                </li>
+              </ul>
+            </div>
           </div>
         ) : (
           <div>
