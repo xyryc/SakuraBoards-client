@@ -35,3 +35,13 @@ SakuraBoards is a web application designed for managing and showcasing minimalis
 - **Authentication**: Firebase Authentication
 - **Hosting**: Firebase Hosting
 - **Routing**: React Router DOM
+
+## .env.local
+```bash
+VITE_apiKey=your_api_key
+VITE_authDomain=your_auth_domain
+VITE_projectId=your_project_id
+VITE_storageBucket=your_storage_bucket
+VITE_messagingSenderId=your_messaging_sender_id
+VITE_appId=your_app_id
+```
